@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Mindful Moments</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&display=swap" rel="stylesheet"/>
+<script>
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          "primary": "#13a4ec",
+          "background-light": "#f6f7f8",
+          "background-dark": "#101c22",
+        },
+        fontFamily: {
+          "display": ["Manrope"]
+        },
+        borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+      },
+    },
+  }
+</script>
+<style>
+  @keyframes gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  .animated-gradient {
+    background-size: 200% 200%;
+    animation: gradient 15s ease infinite;
+  }
+</style>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark">
+<div class="relative flex h-screen w-full flex-col overflow-hidden">
+  <div class="animated-gradient absolute inset-0 bg-gradient-to-br from-background-light via-primary/10 to-background-light dark:from-background-dark dark:via-primary/10 dark:to-background-dark"></div>
+  <div class="relative flex h-full grow flex-col">
+    <main class="flex flex-1 flex-col items-center justify-center p-6 text-center">
+      <div class="w-full max-w-2xl space-y-8">
+        <h1 class="text-4xl font-bold text-gray-800 dark:text-white sm:text-5xl">How are you feeling today?</h1>
+        <div class="w-full">
+          <textarea id="userInput" class="w-full min-h-[150px] resize-none rounded-xl border border-gray-300 dark:border-gray-700 bg-white/50 dark:bg-background-dark/50 p-4 text-gray-800 dark:text-gray-200 placeholder-gray-500 dark:placeholder-gray-400 shadow-sm focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300" placeholder="Share your thoughts and feelings here..."></textarea>
+        </div>
+        
+        <button
+          id="analyzeBtn"
+          class="w-full sm:w-auto inline-flex items-center justify-center rounded-lg bg-primary px-8 py-3 text-lg font-bold text-white shadow-lg transition-transform duration-300 hover:scale-105"
+          type="button"
+        >
+          Analyze My Thoughts
+        </button>
+      </div>
+    </main>
+  </div>
+</div>
+
+<script>
+  document.getElementById("analyzeBtn").addEventListener("click", async () => {
+    // 1. Get the text from the textarea
+    const userInput = document.getElementById("userInput").value;
+
+    if (!userInput.trim()) {
+      alert("Please share your thoughts before analyzing.");
+      return;
+    }
+
+    try {
+      // 2. Send text to your Module 1 API
+      const response = await fetch("http://localhost:5001/analyze", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ text: userInput }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Analysis server is not responding.");
+      }
+
+      const analysisData = await response.json();
+
+      // 3. Save the JSON result in the browser's storage
+      localStorage.setItem("analysisResult", JSON.stringify(analysisData));
+
+      // 4. Go to the next page
+      window.location.href = "decision_page.html";
+
+    } catch (error) {
+      console.error("Error analyzing text:", error);
+      alert("Could not analyze thoughts. Please ensure the backend server (module1_api.py) is running.");
+    }
+  });
+</script>
+
+</body>
+</html>

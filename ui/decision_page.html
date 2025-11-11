@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MindfulMe - Confirmation</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#13a4ec",
+              "background-light": "#f6f7f8",
+              "background-dark": "#101c22",
+            },
+            fontFamily: {
+              "display": ["Manrope"]
+            },
+            borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display">
+<div class="flex flex-col min-h-screen">
+<header class="sticky top-0 z-30 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm shadow-sm">
+<div class="container mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex items-center justify-between h-16">
+<div class="flex items-center gap-4">
+<div class="text-primary">
+<svg class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"></path>
+<path d="M12 9.5c1.38 0 2.5 1.12 2.5 2.5s-1.12 2.5-2.5 2.5-2.5-1.12-2.5-2.5 1.12-2.5 2.5-2.5M12 5c-3.86 0-7 3.14-7 7s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm0 12c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z" opacity=".3"></path>
+</svg>
+</div>
+<h1 class="text-xl font-bold text-gray-900 dark:text-white">MindfulMe</h1>
+</div>
+<div class="flex items-center">
+<div class="w-10 h-10 rounded-full bg-cover bg-center" style='background-image: url("https://lh3.googleusercontent.com/a/ACg8ocIN_vX5jhY6K8LVFf7Ow-owVR-WvfOS4-_mo_GIq7_9L0Aq-cFiyz9zYwxieFUp4pi-5s46mVVUfSRCzSbSTztSTXZ6YS0xfN81kLcL_pnqpUU6d7fOBHpUL69Omgvm38");'></div>
+</div>
+</div>
+</div></header>
+<main class="flex-grow flex items-center justify-center p-4 sm:p-6">
+<div class="w-full max-w-lg text-center bg-white dark:bg-background-dark rounded-lg shadow-lg p-8 sm:p-12">
+<h2 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+                    Thank you for sharing.
+                </h2>
+<p class="text-base sm:text-lg text-gray-600 dark:text-gray-300 mb-8">
+                    For a deeper insight, would you like to answer 9 standard clinical questions about your well-being?
+                </p>
+<div class="flex flex-col sm:flex-row gap-4 justify-center">
+
+<button
+  class="w-full sm:w-auto flex-shrink-0 px-6 py-3 bg-primary text-white font-bold rounded-lg hover:bg-primary/90 focus:outline-none focus:ring-4 focus:ring-primary/30 transition-all duration-300"
+  type="button"
+  onclick="window.location.href='questionnaire.html';"
+>
+  Take the PHQ-9 Assessment
+</button>
+
+<button
+  id="skipBtn" 
+  class="w-full sm:w-auto flex-shrink-0 px-6 py-3 bg-primary/10 dark:bg-primary/20 text-primary font-bold rounded-lg hover:bg-primary/20 dark:hover:bg-primary/30 focus:outline-none focus:ring-4 focus:ring-primary/30 transition-all duration-300"
+  type="button"
+>
+  Skip for now
+</button>
+
+</div>
+</div>
+</main>
+</div>
+
+<script>
+  document.getElementById("skipBtn").addEventListener("click", () => {
+    localStorage.removeItem("quizResult");
+
+    window.location.href = "stats_page.html";
+  });
+</script>
+
+</body></html>

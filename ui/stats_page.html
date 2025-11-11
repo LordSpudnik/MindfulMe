@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MindfulMe Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13a4ec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101c22",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-800 dark:text-slate-200">
+<div class="flex flex-col min-h-screen">
+<header class="sticky top-0 z-30 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm shadow-sm">
+<div class="container mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex items-center justify-between h-16">
+<div class="flex items-center gap-4">
+<div class="text-primary">
+<svg class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"></path>
+<path d="M12 9.5c1.38 0 2.5 1.12 2.5 2.5s-1.12 2.5-2.5 2.5-2.5-1.12-2.5-2.5 1.12-2.5 2.5 2.5M12 5c-3.86 0-7 3.14-7 7s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm0 12c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z" opacity=".3"></path>
+</svg>
+</div>
+<h1 class="text-xl font-bold text-slate-900 dark:text-white">MindfulMe</h1>
+</div>
+
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-full text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700/50 hover:text-primary dark:hover:text-primary transition-colors">
+<span class="material-symbols-outlined">
+                                notifications
+                            </span>
+</button>
+<div class="w-10 h-10 rounded-full bg-cover bg-center" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBoy3A5iNHJq60WsjDBlR8HeZLpzA9jwFHpSBl1leFbyfbyZQ_cFVg8Q2xsXqZ0PDjBOvUNwUFSxmku8aj7mv9W8AXPyvwW59Tex2onHqCwZqG30oJd97VLobNdNR16w8Cr8KKvSoYYu6eX75ekiVvFyzQNYU7Mu9KoYyEl_hjTUvkWiBWxYWUUVLO634NHV49kp6gpJ2Wj4L-MTMfDwu_bHPfxDLlB_bEhTW_pcd0E0zxlPclYVeBlG6k8jna4nhxKdGBmDr3HdbI");'></div>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+<h2 class="text-3xl font-bold mb-8 text-slate-900 dark:text-white">Dashboard</h2>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<div class="lg:col-span-2 space-y-8">
+<div class="bg-white dark:bg-background-dark rounded-xl shadow-lg overflow-hidden border border-slate-200 dark:border-slate-800">
+<div class="p-6">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white mb-4">Text Analysis Results</h3>
+
+<blockquote class="mb-6 p-4 rounded-lg bg-background-light dark:bg-slate-800/50 border-l-4 border-primary">
+  <p id="original-text" class="text-base italic text-slate-600 dark:text-slate-400">
+    "Loading your thoughts..."
+  </p>
+</blockquote>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="flex flex-col items-center justify-center p-4 rounded-lg bg-background-light dark:bg-slate-800/50">
+<span class="text-sm font-medium text-slate-500 dark:text-slate-400">Risk Tone</span>
+<span id="tone-display" class="text-2xl font-bold text-slate-800 dark:text-slate-200">--</span>
+</div>
+<div class="flex flex-col items-center justify-center p-4 rounded-lg bg-background-light dark:bg-slate-800/50">
+<span class="text-sm font-medium text-slate-500 dark:text-slate-400">Sentiment</span>
+<span id="sentiment-display" class="text-2xl font-bold text-slate-800 dark:text-slate-200">--</span>
+</div>
+<div class="flex flex-col items-center justify-center p-4 rounded-lg bg-background-light dark:bg-slate-800/50">
+<span class="text-sm font-medium text-slate-500 dark:text-slate-400">Confidence</span>
+<span id="confidence-display" class="text-2xl font-bold text-slate-800 dark:text-slate-200">--</span>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-white dark:bg-background-dark rounded-xl shadow-lg overflow-hidden border border-slate-200 dark:border-slate-800">
+<div class="p-6">
+<div class="flex justify-between items-start">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">PHQ-9 Results</h3>
+<span id="phq9-level" class="text-xs font-semibold px-2 py-1 rounded-full bg-gray-100 text-gray-800 dark:bg-gray-900/50 dark:text-gray-300">Loading...</span>
+</div>
+<p id="phq9-description" class="text-sm text-slate-600 dark:text-slate-400 mb-4">Your results are loading...</p>
+<div class="flex items-baseline space-x-2">
+<span id="phq9-score" class="text-4xl font-bold text-primary">--</span>
+<span class="text-lg font-medium text-slate-500 dark:text-slate-400">/ 27</span>
+</div>
+</div>
+</div>
+</div>
+
+<div class="bg-white dark:bg-background-dark rounded-xl shadow-lg overflow-hidden border border-slate-200 dark:border-slate-800 lg:row-span-2">
+<div class="p-6">
+  
+  <div id="urgent-resources" class="hidden">
+    <h3 class="text-lg font-bold text-red-600 dark:text-red-500 mb-4">Urgent Support Available</h3>
+    <p class="text-sm text-slate-600 dark:text-slate-400 mb-4">Your results indicate you may be in distress. Please know help is available 24/7. You are not alone.</p>
+    <div class="space-y-4">
+      <div>
+        <h4 class="font-semibold text-slate-800 dark:text-slate-200">Crisis Hotlines</h4>
+        <ul class="mt-2 space-y-1 text-sm list-disc list-inside text-slate-600 dark:text-slate-400">
+          <li>National Suicide Prevention Lifeline: <a class="font-medium text-primary hover:underline" href="tel:988">Call or Text 988</a></li>
+          <li>Crisis Text Line: <a class="font-medium text-primary hover:underline" href="sms:741741">Text HOME to 741741</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div id="moderate-resources" class="hidden">
+    <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-4">Support & Resources</h3>
+    <p class="text-sm text-slate-600 dark:text-slate-400 mb-4">Connecting with others and learning more can be great next steps. Consider these resources.</p>
+    <div class="space-y-4">
+      <div>
+        <h4 class="font-semibold text-slate-800 dark:text-slate-200">Find Professional Support</h4>
+        <ul class="mt-2 space-y-1 text-sm list-disc list-inside text-slate-600 dark:text-slate-400">
+          <li><a class="font-medium text-primary hover:underline" href="https://www.nami.org/help" target="_blank" rel="noopener noreferrer">NAMI Help Page</a></li>
+          <li><a class="font-medium text-primary hover:underline" href="https://findtreatment.samhsa.gov/" target="_blank" rel="noopener noreferrer">SAMHSA Treatment Locator</a></li>
+          <li><a class="font-medium text-primary hover:underline" href="https://www.psychologytoday.com/us/therapists" target="_blank" rel="noopener noreferrer">Find a Therapist</a></li>
+        </ul>
+      </div>
+    </div>
+    <a href="https://www.nami.org/help" target="_blank" rel="noopener noreferrer" class="block w-full text-center mt-6 bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary font-bold py-2 px-4 rounded-lg hover:bg-primary/20 dark:hover:bg-primary/30 transition-colors">
+      Find More Resources
+    </a>
+  </div>
+
+  <div id="self-care-resources" class="hidden">
+    <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-4">Self-Care & Community</h3>
+    <p class="text-sm text-slate-600 dark:text-slate-400 mb-4">Here are some resources for mindfulness, self-care, and connecting with others.</p>
+    <div class="space-y-4">
+      <div>
+        <h4 class="font-semibold text-slate-800 dark:text-slate-200">Learn & Connect</h4>
+        <ul class="mt-2 space-y-1 text-sm list-disc list-inside text-slate-600 dark:text-slate-400">
+          <li><a class="font-medium text-primary hover:underline" href="https://www.mindful.org/meditation/mindfulness-getting-started/" target="_blank" rel="noopener noreferrer">Getting Started with Mindfulness</a></li>
+          <li><a class="font-medium text-primary hover:underline" href="https://www.nami.org/Your-Journey/Individuals-with-Mental-Illness/Community" target="_blank" rel="noopener noreferrer">NAMI Community</a></li>
+          <li><a class="font-medium text-primary hover:underline" href="https://www.mentalhealth.gov/basics/what-is-mental-health" target="_blank" rel="noopener noreferrer">What is Mental Health?</a></li>
+        </ul>
+      </div>
+    </div>
+    <a href="https://www.nami.org/help" target="_blank" rel="noopener noreferrer" class="block w-full text-center mt-6 bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary font-bold py-2 px-4 rounded-lg hover:bg-primary/20 dark:hover:bg-primary/30 transition-colors">
+      Find More Resources
+    </a>
+  </div>
+
+</div>
+</div>
+</div>
+
+<div class="mt-12 text-center">
+  <button
+    id="backToLoginBtn"
+    class="bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary font-bold py-3 px-6 rounded-lg hover:bg-primary/20 dark:hover:bg-primary/30 transition-colors"
+    type="button"
+  >
+    Start Over (Back to Login)
+  </button>
+</div>
+
+</main>
+</div>
+
+<script>
+  window.addEventListener("DOMContentLoaded", () => {
+    
+    // 1. Get and Parse Data
+    const analysisString = localStorage.getItem("analysisResult");
+    const analysisResult = analysisString ? JSON.parse(analysisString) : null;
+    
+    const quizString = localStorage.getItem("quizResult");
+    const quizResult = quizString ? JSON.parse(quizString) : null;
+
+    // --- Populate Module 1 (Analysis) Data ---
+    if (analysisResult) {
+      const toneEl = document.getElementById("tone-display");
+      const sentimentEl = document.getElementById("sentiment-display");
+      const confidenceEl = document.getElementById("confidence-display");
+      const textEl = document.getElementById("original-text"); // <-- NEW
+
+      if (toneEl) {
+        toneEl.textContent = analysisResult.tone;
+        if (analysisResult.tone === 'high-risk') {
+          toneEl.classList.add('text-red-500');
+        } else {
+          toneEl.classList.add('text-green-500');
+        }
+      }
+      if (sentimentEl) {
+        sentimentEl.textContent = analysisResult.sentiment;
+      }
+      if (confidenceEl) {
+        confidenceEl.textContent = `${Math.round(analysisResult.confidence_score * 100)}%`;
+      }
+      // --- NEW SCRIPT TO POPULATE TEXT ---
+      if (textEl) {
+        textEl.textContent = `"${analysisResult.text}"`; // Adds quotes
+      }
+      // --- END NEW SCRIPT ---
+
+    } else {
+      document.getElementById("tone-display").textContent = "N/A";
+      document.getElementById("sentiment-display").textContent = "N/A";
+      document.getElementById("confidence-display").textContent = "--";
+      
+      // --- NEW: Handle missing text ---
+      const textEl = document.getElementById("original-text");
+      if (textEl) {
+        textEl.textContent = "No text analysis was performed.";
+        textEl.classList.remove("italic");
+      }
+      // --- END NEW SCRIPT ---
+    }
+
+    // --- Populate Module 2 (Quiz) Data ---
+    if (quizResult) {
+      const levelEl = document.getElementById("phq9-level");
+      const descriptionEl = document.getElementById("phq9-description");
+      const scoreEl = document.getElementById("phq9-score");
+
+      if (levelEl) {
+        levelEl.textContent = quizResult.level;
+        levelEl.className = 'text-xs font-semibold px-2 py-1 rounded-full'; 
+        if (quizResult.level.includes("severe")) {
+          levelEl.classList.add('bg-red-100', 'text-red-800', 'dark:bg-red-900/50', 'dark:text-red-300');
+        } else if (quizResult.level.includes("moderate")) {
+          levelEl.classList.add('bg-yellow-100', 'text-yellow-800', 'dark:bg-yellow-900/50', 'dark:text-yellow-300');
+        } else {
+          levelEl.classList.add('bg-green-100', 'text-green-800', 'dark:bg-green-900/50', 'dark:text-green-300');
+        }
+      }
+      if (scoreEl) {
+        scoreEl.textContent = quizResult.risk_score;
+      }
+      if (descriptionEl) {
+        descriptionEl.textContent = `Your score of ${quizResult.risk_score} indicates ${quizResult.level}.`;
+      }
+      
+    } else {
+      const levelEl = document.getElementById("phq9-level");
+      const descriptionEl = document.getElementById("phq9-description");
+      const scoreEl = document.getElementById("phq9-score");
+
+      if (levelEl) levelEl.textContent = "Skipped";
+      if (descriptionEl) descriptionEl.textContent = "The PHQ-9 assessment was not taken.";
+      if (scoreEl) scoreEl.textContent = "N/A";
+    }
+
+    // --- Populate Dynamic Resources ---
+    const urgentRes = document.getElementById("urgent-resources");
+    const moderateRes = document.getElementById("moderate-resources");
+    const selfCareRes = document.getElementById("self-care-resources");
+
+    if (analysisResult && analysisResult.tone === 'high-risk') {
+      urgentRes.classList.remove("hidden");
+    } 
+    else if (quizResult && (quizResult.level.includes("severe"))) {
+      urgentRes.classList.remove("hidden");
+    }
+    else if (quizResult && (quizResult.level.includes("moderate") || quizResult.level.includes("mild"))) {
+      moderateRes.classList.remove("hidden");
+    }
+    else {
+      selfCareRes.classList.remove("hidden");
+    }
+
+
+    // --- "Start Over" Button Logic ---
+    const loginBtn = document.getElementById("backToLoginBtn");
+    if (loginBtn) {
+      loginBtn.addEventListener("click", () => {
+        localStorage.removeItem("analysisResult");
+        localStorage.removeItem("quizResult");
+        window.location.href = "login_page.html";
+      });
+    }
+
+  });
+</script>
+
+</body></html>

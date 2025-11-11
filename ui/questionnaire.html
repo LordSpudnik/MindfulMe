@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PHQ-9 Quiz</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+
+<script>
+tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      colors: {
+        primary: "#007BFF",
+        "background-light": "#F8F9FA",
+        "background-dark": "#1A202C",
+        "card-light": "#FFFFFF",
+        "card-dark": "#2D3748",
+        "text-light": "#212529",
+        "text-dark": "#E2E8F0",
+        "subtext-light": "#6C757D",
+        "subtext-dark": "#A0AEC0",
+        "border-light": "#E9ECEF",
+        "border-dark": "#4A5568",
+      },
+      fontFamily: {
+        display: ["Poppins", "sans-serif"],
+      },
+      borderRadius: {
+        DEFAULT: "0.5rem",
+      },
+    },
+  },
+};
+</script>
+
+<style>
+input[type=range] {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 10px;
+  border-radius: 10px;
+  background: linear-gradient(to right, #007BFF 50%, #e5e7eb 50%);
+  outline: none;
+  transition: background 0.15s linear;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #ffffff, #007BFF 70%);
+  box-shadow: 0 0 10px rgba(0,123,255,0.5);
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.2s ease, background 0.3s ease;
+}
+input[type=range]::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+  box-shadow: 0 0 15px rgba(0,123,255,0.7);
+}
+input[type=range]::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #ffffff, #007BFF 70%);
+  box-shadow: 0 0 10px rgba(0,123,255,0.5);
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.2s ease, background 0.3s ease;
+}
+input[type=range]::-moz-range-thumb:hover {
+  transform: scale(1.15);
+  box-shadow: 0 0 15px rgba(0,123,255,0.7);
+}
+input[type=range] {
+  transition: background 0.15s ease-out;
+}
+</style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark font-display flex items-center justify-center min-h-screen p-4">
+<div class="w-full max-w-3xl bg-card-light dark:bg-card-dark rounded-lg shadow-lg p-6 sm:p-8">
+  <div class="flex items-center justify-between mb-6">
+    <h1 class="text-xl font-bold text-text-light dark:text-text-dark">PHQ-9 Questionnaire</h1>
+    <span class="text-sm font-medium text-subtext-light dark:text-subtext-dark">9 Questions</span>
+  </div>
+
+  <form id="quizForm" class="space-y-10">
+    <div id="questions"></div>
+
+    <div class="flex justify-end">
+      <button
+        type="submit"
+        class="bg-primary text-white font-semibold py-3 px-8 rounded-lg shadow-md hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary dark:focus:ring-offset-background-dark transition-all"
+      >
+        Record Answers
+      </button>
+
+    </div>
+  </form>
+</div>
+
+<script>
+const questions = [
+  "1. Little interest or pleasure in doing things",
+  "2. Feeling down, depressed, or hopeless",
+  "3. Trouble falling or staying asleep, or sleeping too much",
+  "4. Feeling tired or having little energy",
+  "5. Poor appetite or overeating",
+  "6. Feeling bad about yourself – or that you are a failure or have let yourself or your family down",
+  "7. Trouble concentrating on things, such as reading the newspaper or watching television",
+  "8. Moving or speaking so slowly that other people could have noticed? Or the opposite – being so fidgety or restless that you have been moving around a lot more than usual",
+  "9. Thoughts that you would be better off dead or of hurting yourself in some way"
+];
+
+const container = document.getElementById("questions");
+
+questions.forEach((q, i) => {
+  const div = document.createElement("div");
+  div.className = "mb-6";
+  div.innerHTML = `
+    <p class="text-lg font-semibold text-text-light dark:text-text-dark mb-4">${q}</p>
+    <div class="flex flex-col items-center space-y-4">
+      <input id="slider${i}" name="q${i+1}" type="range" min="0" max="3" value="0" step="0.01">
+      <div class="flex justify-between w-full text-sm font-medium text-subtext-light dark:text-subtext-dark">
+        <span>0</span><span>1</span><span>2</span><span>3</span>
+      </div>
+      <p id="label${i}" class="text-primary font-semibold mt-2 text-lg">0</p>
+    </div>
+  `;
+  container.appendChild(div);
+});
+
+questions.forEach((_, i) => {
+  const slider = document.getElementById(`slider${i}`);
+  const label = document.getElementById(`label${i}`);
+
+  function updateSliderBackground() {
+    const val = ((slider.value - slider.min) / (slider.max - slider.min)) * 100;
+    slider.style.background = `linear-gradient(to right, #007BFF ${val}%, #e5e7eb ${val}%)`;
+  }
+
+  slider.addEventListener("input", () => {
+    const value = parseFloat(slider.value);
+    if (value < 0.5) label.textContent = "0";
+    else if (value < 1.5) label.textContent = "1";
+    else if (value < 2.5) label.textContent = "2";
+    else label.textContent = "3";
+    updateSliderBackground();
+  });
+
+  updateSliderBackground();
+});
+
+// FIX 3: Replaced the old event listener with the backend-connected version
+document.getElementById("quizForm").addEventListener("submit", async (e) => {
+  e.preventDefault(); // Stop the form from reloading
+
+  // 1. Get all slider values
+  const answers = [];
+  const labels = document.querySelectorAll('p[id^="label"]');
+  labels.forEach(label => {
+    answers.push(parseInt(label.textContent, 10));
+  });
+
+  // 2. Send answers to your Module 2 API
+  try {
+    const response = await fetch("http://localhost:5002/score/questionnaire", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        type: "phq9",
+        answers: answers,
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error("Scoring server is not responding.");
+    }
+
+    const quizData = await response.json();
+
+    // 3. Save the quiz score in the browser's storage
+    localStorage.setItem("quizResult", JSON.stringify(quizData));
+
+    // 4. Go to the stats page
+    window.location.href = "stats_page.html";
+
+  } catch (error) {
+    console.error("Error submitting quiz:", error);
+    alert("Could not submit score. Please ensure the backend server (module2_api.py) is running.");
+  }
+});
+</script>
+</body>
+</html>
