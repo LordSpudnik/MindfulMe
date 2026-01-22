@@ -66,7 +66,7 @@ MindfulMe/
 └── requirements.txt
 ```
 
-⚙️ Tech Stack
+## ⚙️ Tech Stack
 
 Python
 
@@ -82,7 +82,8 @@ NLTK
 
 HTML + TailwindCSS + JavaScript
 
-🚀 How It Works (Workflow)
+## 🚀 How It Works (Workflow)
+
 🔹 Module 1: Text Sentiment + Suicide Risk Detection (Port 5001)
 
 User enters a message in the UI
@@ -110,8 +111,8 @@ total score
 severity level
 
 
-🔌 API Usage
-✅ Module 1: Analyze Text
+## 🔌 API Usage
+# ✅ Module 1: Analyze Text
 
 Endpoint
 
@@ -134,7 +135,7 @@ Example Response
   "confidence_score": 0.92
 }
 
-✅ Module 2: Score Questionnaire (PHQ-9 or GAD-7)
+# ✅ Module 2: Score Questionnaire (PHQ-9 or GAD-7)
 
 Endpoint
 
@@ -161,8 +162,8 @@ Example Response
   "level": "mild depression"
 }
 
-🧪 Training / Reproducing the Model (Optional)
-✅ Step 1: Preprocess the raw dataset
+## 🧪 Training / Reproducing the Model (Optional)
+# ✅ Step 1: Preprocess the raw dataset
 cd scripts
 python data_preprocessor.py
 
@@ -175,7 +176,7 @@ Output:
 
 data/processed/processed_suicide_data.csv
 
-✅ Step 2: Train the custom risk classifier
+# ✅ Step 2: Train the custom risk classifier
 python final_analyzer.py
 
 
@@ -185,30 +186,30 @@ scripts/tfidf_vectorizer.pkl
 
 scripts/risk_classifier_model.pkl
 
-📄 Research Paper (Unpublished)
+## 📄 Research Paper (Unpublished)
 
 This repository includes the unpublished research paper:
 
-📌 AI Powered Chatbots for Mental Health Assessment and Support.pdf
+# 📌 AI Powered Chatbots for Mental Health Assessment and Support.pdf
 
-⚠️ Disclaimer
+## ⚠️ Disclaimer
 
 This paper is currently unpublished and is shared here for academic and project reference purposes only.
 
 Do not reuse, reproduce, or redistribute this paper without explicit permission from the authors.
 All rights reserved © 2026.
 
-🛡️ Safety & Ethical Disclaimer (Important)
+## 🛡️ Safety & Ethical Disclaimer (Important)
 
 MindfulMe is intended for educational and research purposes only.
 
-✅ This project is NOT a medical device
-✅ This project does NOT provide clinical diagnosis
-✅ Users should consult licensed professionals for real support
+# ✅ This project is NOT a medical device
+# ✅ This project does NOT provide clinical diagnosis
+# ✅ Users should consult licensed professionals for real support
 
 If you or someone you know is in immediate danger or distress, please contact local emergency services or a verified crisis hotline.
 
-👨‍💻 Authors
+## 👨‍💻 Authors
 
 Akilan VS
 Subash Venkat
@@ -216,6 +217,6 @@ Muhibullah
 
 VIT Chennai
 
-📌 License
+## 📌 License
 
 Paper (PDF): All Rights Reserved
