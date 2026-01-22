@@ -1,4 +1,3 @@
-✅ README.md (For Your GitHub Repo)
 # MindfulMe 🧠💬  
 ### AI-Powered Chatbots for Mental Health Assessment and Support (Privacy-First / Local AI)
 
