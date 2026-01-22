@@ -112,7 +112,7 @@ severity level
 
 
 ## 🔌 API Usage
-# ✅ Module 1: Analyze Text
+✅ Module 1: Analyze Text
 
 Endpoint
 
@@ -135,7 +135,7 @@ Example Response
   "confidence_score": 0.92
 }
 
-# ✅ Module 2: Score Questionnaire (PHQ-9 or GAD-7)
+✅ Module 2: Score Questionnaire (PHQ-9 or GAD-7)
 
 Endpoint
 
@@ -163,7 +163,7 @@ Example Response
 }
 
 ## 🧪 Training / Reproducing the Model (Optional)
-# ✅ Step 1: Preprocess the raw dataset
+✅ Step 1: Preprocess the raw dataset
 cd scripts
 python data_preprocessor.py
 
@@ -176,7 +176,7 @@ Output:
 
 data/processed/processed_suicide_data.csv
 
-# ✅ Step 2: Train the custom risk classifier
+✅ Step 2: Train the custom risk classifier
 python final_analyzer.py
 
 
@@ -190,7 +190,7 @@ scripts/risk_classifier_model.pkl
 
 This repository includes the unpublished research paper:
 
-# 📌 AI Powered Chatbots for Mental Health Assessment and Support.pdf
+### 📌 AI Powered Chatbots for Mental Health Assessment and Support.pdf
 
 ## ⚠️ Disclaimer
 
@@ -203,9 +203,9 @@ All rights reserved © 2026.
 
 MindfulMe is intended for educational and research purposes only.
 
-# ✅ This project is NOT a medical device
-# ✅ This project does NOT provide clinical diagnosis
-# ✅ Users should consult licensed professionals for real support
+✅ This project is NOT a medical device
+✅ This project does NOT provide clinical diagnosis
+✅ Users should consult licensed professionals for real support
 
 If you or someone you know is in immediate danger or distress, please contact local emergency services or a verified crisis hotline.
 
