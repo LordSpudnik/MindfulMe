@@ -59,6 +59,8 @@ MindfulMe/
 └── requirements.txt
 ```
 
+---
+
 ## ⚙️ Tech Stack
 
 Python
@@ -74,6 +76,8 @@ Pandas / NumPy
 NLTK
 
 HTML + TailwindCSS + JavaScript
+
+---
 
 ## 🚀 How It Works (Workflow)
 
@@ -103,6 +107,7 @@ total score
 
 severity level
 
+---
 
 ## 🔌 API Usage
 ✅ Module 1: Analyze Text
@@ -155,6 +160,8 @@ Example Response
   "level": "mild depression"
 }
 
+---
+
 ## 🧪 Training / Reproducing the Model (Optional)
 ✅ Step 1: Preprocess the raw dataset
 cd scripts
@@ -179,11 +186,15 @@ scripts/tfidf_vectorizer.pkl
 
 scripts/risk_classifier_model.pkl
 
+---
+
 ## 📄 Research Paper (Unpublished)
 
 This repository includes the unpublished research paper:
 
 📌 AI Powered Chatbots for Mental Health Assessment and Support.pdf
+
+---
 
 ## ⚠️ Disclaimer
 
@@ -191,6 +202,8 @@ This paper is currently unpublished and is shared here for academic and project 
 
 Do not reuse, reproduce, or redistribute this paper without explicit permission from the authors.
 All rights reserved © 2026.
+
+---
 
 ## 🛡️ Safety & Ethical Disclaimer (Important)
 
@@ -202,6 +215,8 @@ MindfulMe is intended for educational and research purposes only.
 
 If you or someone you know is in immediate danger or distress, please contact local emergency services or a verified crisis hotline.
 
+---
+
 ## 👨‍💻 Authors
 
 Akilan VS
@@ -209,6 +224,8 @@ Subash Venkat
 Muhibullah
 
 VIT Chennai
+
+---
 
 ## 📌 License
 
