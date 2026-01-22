@@ -1,16 +1,9 @@
 # MindfulMe 🧠💬  
-### AI-Powered Chatbots for Mental Health Assessment and Support (Privacy-First / Local AI)
-
 MindfulMe is a **privacy-preserving mental health assessment system** that performs **sentiment analysis**, **suicide risk detection**, and **standard mental health questionnaire scoring** **entirely on the user's local machine**.
-
-Unlike typical cloud-based mental health tools, MindfulMe is designed to ensure that **sensitive user inputs never leave the device**, improving trust, safety, and user privacy.
 
 ---
 
 ## 📌 Key Features
-
-✅ **Local-only Analysis (Privacy First)**  
-All processing runs on `localhost`, so user text is never transmitted to external cloud servers.
 
 ✅ **Hybrid Text Analysis (Module 1 - NLP + Risk Detection)**  
 - General sentiment classification using a Hugging Face transformer model  
@@ -27,7 +20,7 @@ Automated scoring for:
 Returns total score + severity category.
 
 ✅ **Frontend UI (Static HTML + TailwindCSS)**  
-A lightweight multi-page UI (without frameworks) that interacts with Flask APIs using fetch + LocalStorage.
+A lightweight multi-page UI (without frameworks) that interacts with Flask APIs using fetch.
 
 ---
 
@@ -190,7 +183,7 @@ scripts/risk_classifier_model.pkl
 
 This repository includes the unpublished research paper:
 
-### 📌 AI Powered Chatbots for Mental Health Assessment and Support.pdf
+📌 AI Powered Chatbots for Mental Health Assessment and Support.pdf
 
 ## ⚠️ Disclaimer
 
