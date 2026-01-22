@@ -1,111 +1,222 @@
-# MindfulMe
+✅ README.md (For Your GitHub Repo)
+# MindfulMe 🧠💬  
+### AI-Powered Chatbots for Mental Health Assessment and Support (Privacy-First / Local AI)
 
-MindfulMe is a compassionate, data-powered platform designed to help users understand and improve their mental wellbeing. It combines frontend interactivity, backend analytics, and machine learning to provide risk detection and engaging activities for users.
+MindfulMe is a **privacy-preserving mental health assessment system** that performs **sentiment analysis**, **suicide risk detection**, and **standard mental health questionnaire scoring** **entirely on the user's local machine**.
 
-## Features
+Unlike typical cloud-based mental health tools, MindfulMe is designed to ensure that **sensitive user inputs never leave the device**, improving trust, safety, and user privacy.
 
-- Modern, user-friendly web interface for login and emotional tracking
-- In-depth risk analysis powered by trained ML models
-- Interactive quizzes to personalize recommendations
-- Modular Python backend APIs (Flask)
-- Data preprocessing and model training scripts
+---
 
-## Getting Started
+## 📌 Key Features
 
-### Prerequisites
+✅ **Local-only Analysis (Privacy First)**  
+All processing runs on `localhost`, so user text is never transmitted to external cloud servers.
 
-- Python 3.8+
-- pip
-- Modern web browser
+✅ **Hybrid Text Analysis (Module 1 - NLP + Risk Detection)**  
+- General sentiment classification using a Hugging Face transformer model  
+- Suicide risk detection using a custom ML model trained on TF-IDF + Logistic Regression  
+- Returns:
+  - `sentiment` → positive / neutral / negative  
+  - `tone` → high-risk / low-risk  
+  - `confidence_score`
 
-### Installation
+✅ **Clinical Questionnaire Scoring (Module 2)**  
+Automated scoring for:
+- **PHQ-9 (Depression)**
+- **GAD-7 (Anxiety)**  
+Returns total score + severity category.
 
-1. **Clone the repository:**
+✅ **Frontend UI (Static HTML + TailwindCSS)**  
+A lightweight multi-page UI (without frameworks) that interacts with Flask APIs using fetch + LocalStorage.
 
-   ```bash
-   git clone https://github.com/LordSpudnik/MindfulMe.git
-   cd MindfulMe
-   ```
+---
 
-2. **Install dependencies:**
+## 🏗️ Project Structure
 
-   ```bash
-   pip install flask flask-cors pandas nltk scikit-learn joblib transformers torch
-   ```
-
-3. **Download required NLTK datasets:**
-
-   ```bash
-   python -c "import nltk; nltk.download('stopwords'); nltk.download('wordnet')"
-   ```
-
-### Folder Structure
-
-```
+```bash
 MindfulMe/
+│
 ├── data/
-│   ├── raw/                # Raw source data
-│   └── processed/          # Preprocessed data
-├── frontend/               # Web HTML pages
-├── risk_engine/            # Python backend and ML models
-├── scripts/                # Model pickle files
-└── README.md
+│   ├── raw/
+│   │   └── suicide_detection_data.csv
+│   ├── processed/
+│   │   └── processed_suicide_data.csv
+│   └── results/
+│       └── analysis_results.csv
+│
+├── risk_engine/
+│   ├── module1_api.py
+│   └── module2_api.py
+│
+├── scripts/
+│   ├── data_preprocessor.py
+│   ├── final_analyzer.py
+│   ├── risk_classifier_model.pkl
+│   └── tfidf_vectorizer.pkl
+│
+├── ui/
+│   ├── login_page.html
+│   ├── expression_page.html
+│   ├── decision_page.html
+│   ├── questionnaire.html
+│   └── stats_page.html
+│
+├── AI Powered Chatbots for Mental Health Assessment and Support.pdf
+├── README.md
+└── requirements.txt
 ```
 
-### Preparing Data and Models
+⚙️ Tech Stack
 
-1. **Process raw data:**
+Python
 
-   ```bash
-   cd risk_engine
-   python data_preprocessor.py
-   ```
-   _Creates processed data file in `../data/processed/`._
+Flask + Flask-CORS
 
-2. **Train and export models:**
+Hugging Face Transformers
 
-   ```bash
-   python final_analyzer.py
-   ```
-   _Generates `tfidf_vectorizer.pkl` and `risk_classifier_model.pkl` in `risk_engine/`._
+Scikit-learn
 
-3. **Move model files to `scripts/`:**
+Pandas / NumPy
 
-   ```bash
-   mv tfidf_vectorizer.pkl ../scripts/
-   mv risk_classifier_model.pkl ../scripts/
-   ```
+NLTK
 
-## Running MindfulMe
+HTML + TailwindCSS + JavaScript
 
-You’ll need three terminals:
+🚀 How It Works (Workflow)
+🔹 Module 1: Text Sentiment + Suicide Risk Detection (Port 5001)
 
-1. **Terminal 1 — Risk Analysis API:**
+User enters a message in the UI
 
-   ```bash
-   cd risk_engine
-   python module1_api.py
-   ```
-   _Runs at http://localhost:5001_
+UI calls: POST http://localhost:5001/analyze
 
-2. **Terminal 2 — Quiz API:**
+API returns:
 
-   ```bash
-   cd risk_engine
-   python module2_api.py
-   ```
-   _Runs at http://localhost:5002_
+sentiment label (transformer)
 
-3. **Terminal 3 — Frontend:**
+high-risk/low-risk tone (custom model)
 
-   ```bash
-   cd frontend
-   python -m http.server 8000
-   ```
-   _Visit http://localhost:8000/login_page.html in your browser_
+confidence score
 
-## Usage
+🔹 Module 2: Questionnaire Scoring (Port 5002)
 
-- Complete login and quizzes via frontend
-- System analyzes data, providing feedback and risk alerts
-- All processing is local for privacy (no data sent externally)
+User answers PHQ-9 / GAD-7
+
+UI calls: POST http://localhost:5002/score/questionnaire
+
+API returns:
+
+total score
+
+severity level
+
+
+🔌 API Usage
+✅ Module 1: Analyze Text
+
+Endpoint
+
+POST /analyze
+
+
+Example Request
+
+{
+  "text": "I feel very hopeless and tired of everything."
+}
+
+
+Example Response
+
+{
+  "text": "I feel very hopeless and tired of everything.",
+  "sentiment": "negative",
+  "tone": "high-risk",
+  "confidence_score": 0.92
+}
+
+✅ Module 2: Score Questionnaire (PHQ-9 or GAD-7)
+
+Endpoint
+
+POST /score/questionnaire
+
+PHQ-9 Example
+{
+  "type": "phq9",
+  "answers": [1,2,0,1,2,1,0,1,1]
+}
+
+GAD-7 Example
+{
+  "type": "gad7",
+  "answers": [0,1,1,2,0,1,2]
+}
+
+
+Example Response
+
+{
+  "questionnaire": "PHQ-9",
+  "risk_score": 9,
+  "level": "mild depression"
+}
+
+🧪 Training / Reproducing the Model (Optional)
+✅ Step 1: Preprocess the raw dataset
+cd scripts
+python data_preprocessor.py
+
+
+Input:
+
+data/raw/suicide_detection_data.csv
+
+Output:
+
+data/processed/processed_suicide_data.csv
+
+✅ Step 2: Train the custom risk classifier
+python final_analyzer.py
+
+
+Outputs:
+
+scripts/tfidf_vectorizer.pkl
+
+scripts/risk_classifier_model.pkl
+
+📄 Research Paper (Unpublished)
+
+This repository includes the unpublished research paper:
+
+📌 AI Powered Chatbots for Mental Health Assessment and Support.pdf
+
+⚠️ Disclaimer
+
+This paper is currently unpublished and is shared here for academic and project reference purposes only.
+
+Do not reuse, reproduce, or redistribute this paper without explicit permission from the authors.
+All rights reserved © 2026.
+
+🛡️ Safety & Ethical Disclaimer (Important)
+
+MindfulMe is intended for educational and research purposes only.
+
+✅ This project is NOT a medical device
+✅ This project does NOT provide clinical diagnosis
+✅ Users should consult licensed professionals for real support
+
+If you or someone you know is in immediate danger or distress, please contact local emergency services or a verified crisis hotline.
+
+👨‍💻 Authors
+
+Akilan VS
+Subash Venkat
+Muhibullah
+
+VIT Chennai
+
+📌 License
+
+Paper (PDF): All Rights Reserved
