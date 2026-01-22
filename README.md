@@ -162,7 +162,7 @@ Example Response
 
 ---
 
-## 🧪 Training / Reproducing the Model (Optional)
+## 🧪 Training / Reproducing the Model
 ✅ Step 1: Preprocess the raw dataset
 cd scripts
 python data_preprocessor.py
@@ -205,7 +205,7 @@ All rights reserved © 2026.
 
 ---
 
-## 🛡️ Safety & Ethical Disclaimer (Important)
+## 🛡️ Safety & Ethical Disclaimer
 
 MindfulMe is intended for educational and research purposes only.
 
