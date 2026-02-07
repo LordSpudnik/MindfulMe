@@ -1,4 +1,4 @@
-# MindfulMe 🧠💬  
+# MindfulMe
 MindfulMe is a **privacy-preserving mental health assessment system** that performs **sentiment analysis**, **suicide risk detection**, and **standard mental health questionnaire scoring** **entirely on the user's local machine**.
 
 ---
