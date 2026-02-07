@@ -219,8 +219,8 @@ If you or someone you know is in immediate danger or distress, please contact lo
 
 ## 👨‍💻 Authors
 
-Akilan VS
 Subash Venkat
+Akilan VS
 Muhibullah
 
 VIT Chennai
