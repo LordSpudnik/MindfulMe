@@ -207,9 +207,3 @@ Akilan VS
 Muhibullah
 
 VIT Chennai
-
----
-
-## 📌 License
-
-Paper (PDF): All Rights Reserved
