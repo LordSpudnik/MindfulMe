@@ -188,23 +188,6 @@ scripts/risk_classifier_model.pkl
 
 ---
 
-## 📄 Research Paper (Unpublished)
-
-This repository includes the unpublished research paper:
-
-📌 AI Powered Chatbots for Mental Health Assessment and Support.pdf
-
----
-
-## ⚠️ Disclaimer
-
-This paper is currently unpublished and is shared here for academic and project reference purposes only.
-
-Do not reuse, reproduce, or redistribute this paper without explicit permission from the authors.
-All rights reserved © 2026.
-
----
-
 ## 🛡️ Safety & Ethical Disclaimer
 
 MindfulMe is intended for educational and research purposes only.
